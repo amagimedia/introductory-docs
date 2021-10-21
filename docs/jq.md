@@ -91,6 +91,13 @@ jq '.annotation_results|.[0]|.shot_annotations|.[0:4]' test_json.json
 ]
 ```
 
+#### Get POST paths
+
+Get all POST paths from github_swagger.json file checked in here.
+
+```
+jq -c '.paths | to_entries[] | select(.value.patch?) | .key' github_swagger.json
+```
 
 
 
