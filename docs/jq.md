@@ -100,4 +100,7 @@ jq -c '.paths | to_entries[] | select(.value.patch?) | .key' github_swagger.json
 ```
 
 
+## Good online resources
+1. [Taking a simple example through jq analysis](https://www.youtube.com/watch?v=EIhLl9ebeiA&list=PLKaiHc24qCTSOGkkEpeIMupEmnInqHbbV&index=2)
+2. JQ in [depth](https://earthly.dev/blog/jq-select/)
 
