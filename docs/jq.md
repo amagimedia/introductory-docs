@@ -91,9 +91,18 @@ jq '.annotation_results|.[0]|.shot_annotations|.[0:4]' test_json.json
 ]
 ```
 
+#### Json Transformation examples
+
+Following examples are on https://github.com/ZackAkil/video-intelligence-api-visualiser/blob/main/assets/test_json.json.
+
+1. Convert time format in the transformation.
+```
+jq '{annotations: {shot_annotations: [.annotation_results[0].shot_annotations[] | {start_time_offset: (if .start_time_offset.nanos != null then (.start_time_offset.seconds + (.start_time_offset.nanos/1e9)) else 0 end), end_time_offset: (if .end_time_offset.nanos != null then (.end_time_offset.seconds + (.end_time_offset.nanos/1e9)) else 0 end)}]}}' test_json.json > shot_annotations.json
+```
+
 #### Get POST paths
 
-Get all POST paths from github_swagger.json file checked in here.
+Get all POST paths from github_swagger.json file checked in [here](https://raw.githubusercontent.com/amagimedia/introductory-docs/main/github_swagger.json).
 
 ```
 jq -c '.paths | to_entries[] | select(.value.patch?) | .key' github_swagger.json
